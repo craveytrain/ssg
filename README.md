@@ -1,5 +1,4 @@
 # TODOs
-- iterate over pages
 - page type templates (post, page, etc)
 - markdown content
 - YAML front matter
@@ -12,6 +11,6 @@
 - deploy task?
 
 ...
-- abstract ssg to an npm module that the blog calls up
-...
 - preprocess markdown for special tags (code, etc)
+...
+- abstract ssg to an npm module that the blog calls up

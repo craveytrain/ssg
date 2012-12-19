@@ -6,7 +6,9 @@ module.exports = function(grunt) {
 grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
     render: {
-        stuff: 'yeah'
+        content: ['content/**/*.yml'],
+        target: 'build',
+        templates: 'templates',
     },
     jade: {
         options: {
