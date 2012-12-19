@@ -1,4 +1,5 @@
 # TODOs
+- pageview models with defaults (instead of site and page)
 - markdown content
 - YAML front matter
 - page type templates (post, page, etc, nested jade templates?)
