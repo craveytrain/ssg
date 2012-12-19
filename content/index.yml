@@ -1,0 +1,5 @@
+title: Home!
+description: test description
+pageSlug: home
+pageType: home
+body: <div>foo</div>

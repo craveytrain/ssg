@@ -1,0 +1,14 @@
+nav.page-nav(role='navigation')
+	ul
+		li.nav-home
+			a(href='/')= site.title
+		li
+			a(href='/posts') Posts
+		li
+			a(href='/#about') About
+		li
+			a(href='/#contact') Contact
+		li.nav-search
+			form#search(method='get', action='http://google.com/search', role='search')
+				input(type='hidden', name='sitesearch', value=site.domain)
+				input#q(type='search', name='q', placeholder='search')

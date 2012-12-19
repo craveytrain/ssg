@@ -1,9 +1,0 @@
-{
-	"title": "Home!",
-	"description": "test description",
-	"author": "Mike Cravey",
-	"canonical": "http://craveytrain.com/path/to/page",
-	"pageSlug": "home",
-	"pageType": "home",
-	"body": "<div>foo</div>"
-}
