@@ -1,5 +1,4 @@
-title: Home!
-description: test description
+title: Home
 pageSlug: home
 pageType: home
 body: <div>foo</div>

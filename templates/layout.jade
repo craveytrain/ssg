@@ -4,28 +4,7 @@ html(lang='en', dir='ltr').no-js
 		include includes/head
 
 	body(id=page.pageSlug, class=page.pageType)
-		if page.pageSlug === 'home'
-			header.page-header(role='banner')
-				hgroup
-					h1= site.title
-					h2=site.subtitle
-			nav.page-nav(role='navigation')
-				ul
-					li.nav-home
-						a(href='/')= site.title
-					li
-						a(href='/posts') Posts
-					li
-						a(href='/#about') About
-					li
-						a(href='/#contact') Contact
-					li.nav-search
-						form#search(method='get', action='http://google.com/search', role='search')
-							input(type='hidden', name='sitesearch', value=site.domain)
-							input#q(type='search', name='q', placeholder='search')
-			section.main(role='main')!= page.body
-			footer.page-footer(role='contentinfo')
-				h2 Colophon
-				p Brought to you by <a href="http://octopress.org">Octopress</a> and the number 4.
-			script(src='/javascripts/global.js')
-
+		include includes/header
+		include includes/nav
+		section.main(role='main')!= page.body
+		include includes/footer
