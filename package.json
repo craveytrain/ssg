@@ -19,6 +19,9 @@
   "license": "BSD",
   "gitHead": "6e787d135e6e331d94782399d366ca9757b72958",
   "devDependencies": {
-    "grunt": "~0.4.0"
+    "grunt": "~0.4.0",
+    "jade": "~0.27.7",
+    "grunt-contrib-jade": "~0.3.1",
+    "grunt-contrib-clean": "~0.4.0a"
   }
 }
