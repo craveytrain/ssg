@@ -1,0 +1,24 @@
+{
+  "name": "ssg",
+  "version": "0.0.0",
+  "description": "Generates a static site.",
+  "main": "index.js",
+  "scripts": {
+    "test": "grunt test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/craveytrain/ssg.git"
+  },
+  "keywords": [
+    "site",
+    "generator",
+    "static"
+  ],
+  "author": "Mike Cravey",
+  "license": "BSD",
+  "gitHead": "6e787d135e6e331d94782399d366ca9757b72958",
+  "devDependencies": {
+    "grunt": "~0.4.0"
+  }
+}
