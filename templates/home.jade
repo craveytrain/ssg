@@ -1,0 +1,32 @@
+extends layout
+
+block header
+	header.page-header(role='banner')
+		hgroup
+			h1= site.title
+			h2=site.subtitle
+
+
+block content
+	article#about
+		h2 About
+		p Hi, my name is Mike Cravey and I am a geek. This is my personal echo chamber for things tech related and well, whatever else I'm comfortable throwing out into the world.
+
+		p I'm a UI Engineer at <a href="http://www.whalesharkmedia.com/">WhaleShark Media</a> here in Austin, TX. When I'm not working on our products (and sometimes when I should be) I play with my <a href="https://github.com/craveytrain/dotfiles">dotfiles</a> repo and am constantly trying to find new tools/processes.
+
+	article#contact
+		h2 Contact
+
+		p Have something to say you would like me to hear? Feel free to drop me a line at any one of the following fine establishments (or anywhere else you see me):
+
+		ul
+			li.icon-twitter
+				a(href='http://twitter.com/craveytrain') Twitter
+			li.icon-github
+				a(href='http://github.com/craveytrain') GitHub
+			li.icon-linkedin
+				a(href='http://www.linkedin.com/in/craveytrain') LinkedIn
+			li.icon-flickr
+				a(href='http://www.flickr.com/photos/craveytrain/') Flickr
+			li.icon-gplus
+				a(href='https://plus.google.com/114567947840695463929') Google+

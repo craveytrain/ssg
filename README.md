@@ -1,5 +1,4 @@
 # TODOs
-- page type templates (post, page, etc)
 - markdown content
 - YAML front matter
 - bypass processing for html files
@@ -9,6 +8,7 @@
 - version static assets
 - package task
 - deploy task?
+- real content/templates
 
 ...
 - preprocess markdown for special tags (code, etc)

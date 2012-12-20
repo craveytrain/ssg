@@ -1,10 +1,12 @@
 !!! 5
-html(lang='en', dir='ltr').no-js
+html.no-js(lang='en', dir='ltr')
 	head
 		include includes/head
 
 	body(id=page.pageSlug, class=page.pageType)
-		include includes/header
+		block header
 		include includes/nav
-		section.main(role='main')!= page.body
+		section.main(role='main')
+			block content
+				!= page.body
 		include includes/footer

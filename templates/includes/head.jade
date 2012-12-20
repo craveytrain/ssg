@@ -11,5 +11,6 @@ link(rel='canonical', content=page.canonical)
 link(rel='alternative', title=site.title, type='application/atom+xml', href=site.rss)
 link(rel='author', href='/#author', title='About the author')
 link(rel='home', href='/', title='Home')
-link(rel='stylesheet', href=page.stylesheet)
+block stylesheet
+	link(rel='stylesheet', href=page.stylesheet)
 // Welcome to the source code. Enjoy yourself. Questions, concerns, comments, drop me a line.
