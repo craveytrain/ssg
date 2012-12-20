@@ -1,4 +1,5 @@
+---
 title: Home
 pageSlug: home
 pageType: home
-body: <div>foo</div>
+---
