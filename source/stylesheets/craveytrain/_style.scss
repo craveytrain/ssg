@@ -1,0 +1,290 @@
+/* ==|== primary styles =====================================================
+Author: Mike Cravey
+========================================================================== */
+body {
+	margin: 0 auto;
+	max-width: $body-width;
+}
+
+h1, h2, h3, h4, h5, h6 {
+	font-family: $sans;
+}
+
+h1 {
+	font-size: $h1-font-size;
+	line-height: $h1-line-height;
+	margin: $h1-margins;
+}
+
+h2 {
+	font-size: $h2-font-size;
+	line-height: $h2-line-height;
+	margin: $h2-margins;
+}
+
+h3 {
+	font-size: $h3-font-size;
+	line-height: $h3-line-height;
+	margin: $h3-margins;
+}
+
+h4 {
+	font-size: $h4-font-size;
+	line-height: $h4-line-height;
+	margin: $h4-margins;
+}
+
+.page-header {
+	display: none;
+
+	@media only screen and (min-width: 50em) {
+		position: fixed;
+		display: block;
+		z-index: 2;
+		width: $body-width;
+		left: 50%;
+		margin-left: -20em;
+	}
+}
+
+#logo {
+	display: block;
+	text-indent: -9999px;
+}
+
+.page-nav {
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	background: #000;
+	color: #fff;
+	font-family: $sans;
+	text-transform: uppercase;
+
+	@media only screen and (min-width: 50em) {
+		position: fixed;
+		z-index: 2;
+	}
+}
+
+.page-nav ul {
+	position: relative;
+	padding-left: 4.75em;
+	max-width: $body-width;
+
+	@media only screen and (min-width: 50em) {
+		margin: 0 auto;
+		width: $body-width;
+		padding: 0;
+	}
+}
+
+.page-nav li {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-nav a {
+	display: block;
+	color: #fff;
+	text-decoration: none;
+	padding: .35em 0;
+}
+
+.nav-home {
+	position: absolute;
+	top: 0;
+	left: 0;
+	padding: 0;
+	@include single-transition(opacity, 1s);
+
+	@media only screen and (min-width: 50em) {
+		left: auto;
+		right: $body-width;
+		width: 10em;
+		color: transparent;
+	}
+}
+
+.nav-home a {
+	display: block;
+	padding: 0;
+	text-indent: -9999px;
+	color: transparent;
+	@include single-transition(color, 1s);
+
+	@media only screen and (min-width: 62em) {
+		text-indent: 0;
+		color: #000;
+		margin-top: 2em;
+	}
+}
+
+.nav-home a:after {
+	content: '';
+	position: absolute;
+	top: .35em;
+	left: 0;
+	height: 50px;
+	width: 50px;
+	border-radius: 50%;
+	background: #fff inline-image('small-logo.png') 0 0 no-repeat;
+	border: 5px solid #fff;
+
+	@media only screen and (min-width: 50em) {
+		left: auto;
+		right: 0;
+	}
+}
+
+.nav-search {
+	position: absolute;
+	bottom: -1.44em;
+	right: 0;
+	margin: 0;
+	padding: 0;
+
+	@media only screen and (min-width: 30em) {
+		bottom: auto;
+		top: 0;
+		padding: .35em 0;
+		border: none;
+	}
+
+}
+
+#q {
+	border: 1px inset #000;
+	@media only screen and (min-width: 30em) {
+		box-shadow: 1px 1px 4px rgba(0,0,0,.4) inset;
+		padding: 0 .5em;
+		border-radius: .25em;
+	}
+}
+
+#toggleNav {
+	@media only screen and (min-width: 45em) {
+		display: none;
+	}
+}
+
+article {
+	padding-top: 3em;
+
+	@media only screen and (min-width: 50em) {
+		padding-top: 2em;
+	}
+}
+
+article article {
+	padding-top: 0;
+}
+
+blockquote {
+  margin: 0 .842em;
+  padding: 0 .842em;
+  font-style: italic;
+  font-size: $h3-font-size;
+  line-height: $h3-line-height;
+  border-left: 4px solid rgba($text-color-light, .5);
+
+  p {
+	margin: 1.263em 0;
+  }
+  cite {
+    font-style: italic;
+    a {
+		color: $text-color-light !important;
+		word-wrap: break-word;
+	}
+    &:before {
+		content: '\2014';
+		padding:{right: .3em; left: .3em;}
+		color: $text-color-light;
+	}
+  }
+}
+
+.main {
+	@media only screen and (min-width: 45em) {
+		width: auto;
+		left: 35%;
+	}
+}
+
+@media only screen and (min-width: 50em) {
+	/* home page */
+	.home {
+		margin-top: 15em;
+		.page-header {
+			position: fixed;
+			height: 15em;
+			top: 0;
+			left: 0;
+			right: 0;
+			margin: 0 auto;
+			z-index: -1;
+
+			h2 {
+				display: block;
+			}
+
+			hgroup {
+				display: block;
+				width: 30em;
+				margin: auto;
+				padding: 3em 0 0 10em;
+			}
+			hgroup:before {
+				content: '';
+				position: absolute;
+				left: 0;
+				height: 138px;
+				width: 138px;
+				background: inline-image('large-logo.png') 0 0 no-repeat;
+			}
+		}
+
+
+		.page-nav {
+			position: absolute;
+			top: 15em;
+		}
+
+		.page-nav.fixed {
+			position: fixed;
+			top: 0;
+		}
+
+		.nav-home {
+			opacity: 0;
+		}
+
+		.fixed .nav-home {
+			opacity: 1;
+		}
+
+		.main {
+			background: $bg-color;
+		}
+	}
+}
+
+#contact {
+	ul {
+		padding: 0;
+	}
+
+	li {
+		position: relative;
+		margin-left: -25px;
+		padding-left: 25px;
+		list-style: none;
+
+		&:before {
+			position: absolute;
+			left: 0;
+		}
+	}
+}
