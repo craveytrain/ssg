@@ -112,9 +112,9 @@ grunt.loadNpmTasks('grunt-contrib-watch');
 grunt.loadNpmTasks('grunt-contrib-jshint');
 grunt.loadTasks('lib');
 
-grunt.registerTask('build', ['clean', 'jshint', 'copy', 'render', 'compass:dev', 'uglify']);
-// Preview the site
+grunt.registerTask('build', ['clean', 'jshint', 'copy', 'render', 'compass:dev']);
 grunt.registerTask('preview', ['build', 'connect', 'watch']);
+grunt.registerTask('package', ['clean', 'jshint', 'copy', 'render', 'compass:dist', 'uglify']);
 
 // Default task(s).
 grunt.registerTask('default', ['build']);

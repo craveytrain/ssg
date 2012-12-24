@@ -1,7 +1,6 @@
 # TODOs
 - syntax highlighting
 - version static assets
-- package task
 - deploy task?
 - real content/templates
 
