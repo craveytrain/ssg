@@ -41,6 +41,18 @@ grunt.initConfig({
         }
 
     },
+    uglify: {
+        dist: {
+            options: {
+                sourceMap: 'build/scripts/main.min.js.map',
+                sourceMappingURL: 'main.min.js.map',
+                prefix: '2'
+            },
+            files: {
+                'build/scripts/main.min.js': 'build/scripts/main.js'
+            }
+        }
+    },
     connect: {
         server: {
             options: {
@@ -58,9 +70,10 @@ grunt.loadNpmTasks('grunt-contrib-clean');
 grunt.loadNpmTasks('grunt-contrib-connect');
 grunt.loadNpmTasks('grunt-contrib-compass');
 grunt.loadNpmTasks('grunt-contrib-copy');
+grunt.loadNpmTasks('grunt-contrib-uglify');
 grunt.loadTasks('lib');
 
-grunt.registerTask('build', ['clean', 'copy', 'render', 'compass:dev']);
+grunt.registerTask('build', ['clean', 'copy', 'render', 'compass:dev', 'uglify']);
 // Preview the site
 grunt.registerTask('preview', ['build', 'connect']);
 

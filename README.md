@@ -1,5 +1,4 @@
 # TODOs
-- build js assets (require? uglify? source maps?)
 - watch task (content dir, source dir, templates dir, everything?)
 - syntax highlighting
 - version static assets

@@ -27,6 +27,7 @@
     "js-yaml": "~1.0.3",
     "marked": "~0.2.6",
     "grunt-contrib-compass": "~0.1.0",
-    "grunt-contrib-copy": "~0.3.2"
+    "grunt-contrib-copy": "~0.3.2",
+    "grunt-contrib-uglify": "~0.1.0"
   }
 }

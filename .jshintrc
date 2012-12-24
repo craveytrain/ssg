@@ -1,6 +1,7 @@
 {
     // Predefined globals whom JSHint will ignore.
-    "node"       : true,   // Standard browser globals e.g. `window`, `document`.
+    "node"       : true,   // Standard node globals e.g. `require`.
+    "browser"    : true,   // Standard browser globals e.g. `window`, `document`.
 
     "predef"        : [  // Custom globals.
     ],
