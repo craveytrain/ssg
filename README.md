@@ -1,5 +1,5 @@
 # TODOs
-- watch task (content dir, source dir, templates dir, everything?)
+- linting
 - syntax highlighting
 - version static assets
 - package task

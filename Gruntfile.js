@@ -53,12 +53,41 @@ grunt.initConfig({
             }
         }
     },
+    watch: {
+        scripts: {
+            files: 'source/scripts/**/*.js',
+            tasks: ['uglify'],
+            options: {
+                interrupt: true
+            }
+        },
+        stylesheets: {
+            files: 'source/stylesheets/**/*.scss',
+            tasks: ['compass:dev'],
+            options: {
+                interrupt: true
+            }
+        },
+        templates: {
+            files: ['**/*.yml', 'templates/**/*.jade', 'content/**/*.md'],
+            tasks: ['render'],
+            options: {
+                interrupt: true
+            }
+        },
+        staticFiles: {
+            files: ['source/**', '!source/stylesheets/**'],
+            tasks: ['copy'],
+            options: {
+                interrupt: true
+            }
+        }
+    },
     connect: {
         server: {
             options: {
                 port: 4000,
-                base: 'build',
-                keepalive: true
+                base: 'build'
             }
         }
     },
@@ -71,11 +100,12 @@ grunt.loadNpmTasks('grunt-contrib-connect');
 grunt.loadNpmTasks('grunt-contrib-compass');
 grunt.loadNpmTasks('grunt-contrib-copy');
 grunt.loadNpmTasks('grunt-contrib-uglify');
+grunt.loadNpmTasks('grunt-contrib-watch');
 grunt.loadTasks('lib');
 
 grunt.registerTask('build', ['clean', 'copy', 'render', 'compass:dev', 'uglify']);
 // Preview the site
-grunt.registerTask('preview', ['build', 'connect']);
+grunt.registerTask('preview', ['build', 'connect', 'watch']);
 
 // Default task(s).
 grunt.registerTask('default', ['build']);
