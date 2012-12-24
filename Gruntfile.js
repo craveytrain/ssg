@@ -83,6 +83,14 @@ grunt.initConfig({
             }
         }
     },
+    jshint: {
+        options: {
+            jshintrc: '.jshintrc'
+        },
+        grunt: ['Gruntfile.js', 'lib/**/*.js'],
+        site: ['source/**/*.js']
+
+    },
     connect: {
         server: {
             options: {
@@ -101,9 +109,10 @@ grunt.loadNpmTasks('grunt-contrib-compass');
 grunt.loadNpmTasks('grunt-contrib-copy');
 grunt.loadNpmTasks('grunt-contrib-uglify');
 grunt.loadNpmTasks('grunt-contrib-watch');
+grunt.loadNpmTasks('grunt-contrib-jshint');
 grunt.loadTasks('lib');
 
-grunt.registerTask('build', ['clean', 'copy', 'render', 'compass:dev', 'uglify']);
+grunt.registerTask('build', ['clean', 'jshint', 'copy', 'render', 'compass:dev', 'uglify']);
 // Preview the site
 grunt.registerTask('preview', ['build', 'connect', 'watch']);
 

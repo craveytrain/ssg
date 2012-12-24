@@ -1,5 +1,4 @@
 # TODOs
-- linting
 - syntax highlighting
 - version static assets
 - package task
