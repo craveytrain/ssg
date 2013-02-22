@@ -1,4 +1,3 @@
-/*jshint quotmark:false */
 module.exports = function(grunt) {
 'use strict';
 
@@ -7,9 +6,14 @@ grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
     copy: {
         dist: {
-            files: {
-                'build/': ['source/**', '!source/stylesheets/**']
-            }
+            files: [
+                {
+                    cwd: 'source/',
+                    expand: true,
+                    src: ['**', '!stylesheets/**'],
+                    dest: 'build/'
+                }
+            ]
         }
     },
     render: {
@@ -54,13 +58,6 @@ grunt.initConfig({
         }
     },
     watch: {
-        scripts: {
-            files: 'source/scripts/**/*.js',
-            tasks: ['uglify'],
-            options: {
-                interrupt: true
-            }
-        },
         stylesheets: {
             files: 'source/stylesheets/**/*.scss',
             tasks: ['compass:dev'],
@@ -91,6 +88,23 @@ grunt.initConfig({
         site: ['source/**/*.js']
 
     },
+    htmlmin: {
+        dist: {
+            options: {
+                removeComments: true,
+                removeCommentsFromCDATA: true,
+                removeCDATASectionsFromCDATA: true,
+                collapseWhitespace: true,
+                collapseBooleanAttributes: true,
+                removeRedundantAttributes: true,
+                removeEmptyAttributes: true,
+                removeOptionalTags: true
+            },
+            files: {
+                'build/**/*.html': 'build/**/*.html'
+            }
+        }
+    },
     connect: {
         server: {
             options: {
@@ -110,6 +124,7 @@ grunt.loadNpmTasks('grunt-contrib-copy');
 grunt.loadNpmTasks('grunt-contrib-uglify');
 grunt.loadNpmTasks('grunt-contrib-watch');
 grunt.loadNpmTasks('grunt-contrib-jshint');
+grunt.loadNpmTasks('grunt-contrib-htmlmin');
 grunt.loadTasks('lib');
 
 grunt.registerTask('build', ['clean', 'jshint', 'copy', 'render', 'compass:dev']);
