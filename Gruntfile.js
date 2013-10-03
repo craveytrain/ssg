@@ -84,7 +84,7 @@ grunt.initConfig({
         options: {
             jshintrc: '.jshintrc'
         },
-        grunt: ['Gruntfile.js', 'lib/**/*.js'],
+        grunt: ['Gruntfile.js', 'lib/**/*.js', 'tasks/**/*.js'],
         site: ['source/**/*.js']
 
     },
