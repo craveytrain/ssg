@@ -125,7 +125,7 @@ grunt.loadNpmTasks('grunt-contrib-uglify');
 grunt.loadNpmTasks('grunt-contrib-watch');
 grunt.loadNpmTasks('grunt-contrib-jshint');
 grunt.loadNpmTasks('grunt-contrib-htmlmin');
-grunt.loadTasks('lib');
+grunt.loadTasks('tasks');
 
 grunt.registerTask('build', ['clean', 'jshint', 'copy', 'render', 'compass:dev']);
 grunt.registerTask('preview', ['build', 'connect', 'watch']);

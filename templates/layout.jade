@@ -3,10 +3,10 @@ html.no-js(lang='en', dir='ltr')
 	head
 		include includes/head
 
-	body(id=page.pageSlug, class=page.pageType)
+	body(id=pageSlug, class=pageType)
 		block header
 		include includes/nav
 		section.main(role='main')
 			block content
-				!= page.body
+				!= body
 		include includes/footer

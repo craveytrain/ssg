@@ -1,7 +1,7 @@
 nav.page-nav(role='navigation')
 	ul
 		li.nav-home
-			a(href='/')= site.title
+			a(href='/')= title
 		li
 			a(href='/posts') Posts
 		li
@@ -10,5 +10,5 @@ nav.page-nav(role='navigation')
 			a(href='/#contact') Contact
 		li.nav-search
 			form#search(method='get', action='http://google.com/search', role='search')
-				input(type='hidden', name='sitesearch', value=site.domain)
+				input(type='hidden', name='sitesearch', value=domain)
 				input#q(type='search', name='q', placeholder='search')
