@@ -4,6 +4,7 @@ module.exports = function(grunt) {
 // Project configuration.
 grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
+
     copy: {
         dist: {
             files: [
@@ -16,35 +17,30 @@ grunt.initConfig({
             ]
         }
     },
+
     render: {
         content: ['content/**/*.md'],
         target: 'build',
         templates: 'templates',
     },
+
     jade: {
         options: {
            pretty: true
         }
     },
-    compass: {
-        dev: {
-            options: {
-                outputStyle: 'expanded',
-                debugInfo: true
-            }
-        },
-        dist: {
-                options: {
-                    outputStyle: 'compressed'
-                }
-            },
-        options: {
-            sassDir: 'source/stylesheets',
-            cssDir: 'build/stylesheets',
-            imagesDir: 'source/images'
-        }
 
+    stylus: {
+        compile: {
+            options: {
+                linenos: true
+            },
+            files: {
+                'build/css/default.css': 'source/stylesheets/default.styl'
+            }
+        }
     },
+
     uglify: {
         dist: {
             options: {
@@ -57,14 +53,16 @@ grunt.initConfig({
             }
         }
     },
+
     watch: {
-        stylesheets: {
-            files: 'source/stylesheets/**/*.scss',
-            tasks: ['compass:dev'],
+        css: {
+            files: 'source/stylesheets/**/*.styl',
+            tasks: ['stylus'],
             options: {
                 interrupt: true
             }
         },
+
         templates: {
             files: ['**/*.yml', 'templates/**/*.jade', 'content/**/*.md'],
             tasks: ['render'],
@@ -72,6 +70,7 @@ grunt.initConfig({
                 interrupt: true
             }
         },
+
         staticFiles: {
             files: ['source/**', '!source/stylesheets/**'],
             tasks: ['copy'],
@@ -80,6 +79,7 @@ grunt.initConfig({
             }
         }
     },
+
     jshint: {
         options: {
             jshintrc: '.jshintrc'
@@ -88,6 +88,7 @@ grunt.initConfig({
         site: ['source/**/*.js']
 
     },
+
     htmlmin: {
         dist: {
             options: {
@@ -105,6 +106,7 @@ grunt.initConfig({
             }
         }
     },
+
     connect: {
         server: {
             options: {
@@ -113,23 +115,24 @@ grunt.initConfig({
             }
         }
     },
+
     clean: ['build']
 });
 
 grunt.loadNpmTasks('grunt-contrib-jade');
 grunt.loadNpmTasks('grunt-contrib-clean');
 grunt.loadNpmTasks('grunt-contrib-connect');
-grunt.loadNpmTasks('grunt-contrib-compass');
 grunt.loadNpmTasks('grunt-contrib-copy');
 grunt.loadNpmTasks('grunt-contrib-uglify');
 grunt.loadNpmTasks('grunt-contrib-watch');
 grunt.loadNpmTasks('grunt-contrib-jshint');
 grunt.loadNpmTasks('grunt-contrib-htmlmin');
+grunt.loadNpmTasks('grunt-contrib-stylus');
 grunt.loadTasks('tasks');
 
-grunt.registerTask('build', ['clean', 'jshint', 'copy', 'render', 'compass:dev']);
+grunt.registerTask('build', ['clean', 'jshint', 'copy', 'render', 'stylus']);
 grunt.registerTask('preview', ['build', 'connect', 'watch']);
-grunt.registerTask('package', ['clean', 'jshint', 'copy', 'render', 'compass:dist', 'uglify']);
+grunt.registerTask('package', ['clean', 'jshint', 'copy', 'render', 'stylus', 'uglify']);
 
 // Default task(s).
 grunt.registerTask('default', ['build']);
