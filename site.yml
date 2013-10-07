@@ -6,4 +6,7 @@ rss: /atom.xml
 stylesheet: /css/default.css
 script: /js/main.min.js
 domain: craveytrain.com
-keywords: engineering, development, user interface
+keywords:
+    - engineering
+    - development
+    - user interface

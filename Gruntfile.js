@@ -21,7 +21,7 @@ grunt.initConfig({
 	render: {
 		content: ['content/**/*.md'],
 		target: 'build',
-		templates: 'templates',
+		templates: 'templates'
 	},
 
 	jade: {
@@ -101,7 +101,7 @@ grunt.initConfig({
 			jshintrc: '.jshintrc'
 		},
 		grunt: ['Gruntfile.js', 'lib/**/*.js', 'tasks/**/*.js'],
-		site: ['source/**/*.js']
+		site: ['source/**/*.js', 'model/**/*.js']
 
 	},
 

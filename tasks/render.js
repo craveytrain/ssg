@@ -4,8 +4,7 @@ module.exports = function(grunt) {
 var extend = require('extend');
 var jsYAML = require('js-yaml');
 var path = require('path');
-var reYAMLFM = /^\-{3}([\w\W]+)\-{3}([\w\W]*)/;
-
+var yamlFront = require('yaml-front-matter');
 var siteModel = grunt.file.readYAML('site.yml');
 var baseModel = require('../models/page')(siteModel);
 
@@ -24,14 +23,8 @@ function determinePageType(data, page, path) {
 }
 
 var buildModel = function(page, path) {
-	// split file contents into frontmatter and non
-	var fileContents = reYAMLFM.exec(grunt.file.read(page));
-
-	// parse out YAML
-	var data = jsYAML.load(fileContents[1]);
-
-	// body is the rest of the file
-	data.body = fileContents[2];
+	// split file contents into YAML front matter and content
+	var data = yamlFront.loadFront(grunt.file.read(page));
 
 	if (!data.pageType) {
 		data.pageType = determinePageType(data, page, path);
