@@ -4,5 +4,6 @@ author: Mike Cravey
 description: The blog of Mike Cravey (@craveytrain).
 rss: /atom.xml
 stylesheet: /css/default.css
+script: /js/main.min.js
 domain: craveytrain.com
 keywords: engineering, development, user interface
