@@ -1,15 +1,12 @@
 'use strict';
 
-var marked = require('marked');
+var marked = require('supermarked');
 var excerpt = require('../lib/excerpt');
 var extend = require('extend');
 
-marked.setOptions({
-	gfm: true,
-	pedantic: false,
-	sanitize: true
-});
-
+marked.aliases = {
+	html: 'xml'
+};
 
 module.exports = function(baseModel, data) {
 	var content = data.__content.trim();
