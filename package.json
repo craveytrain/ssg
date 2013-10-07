@@ -33,7 +33,8 @@
     "grunt-contrib-htmlmin": "~0.1.3",
     "grunt-contrib-stylus": "~0.8.0",
     "yaml-front-matter": "~2.1.0",
-    "supermarked": "~1.1.0"
+    "supermarked": "~1.1.0",
+    "grunt-autoprefixer": "~0.3.0"
   },
   "devDependencies": {
     "highlight": "~0.2.3"

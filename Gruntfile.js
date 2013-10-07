@@ -41,6 +41,15 @@ grunt.initConfig({
 		}
 	},
 
+	autoprefixer: {
+		options: {},
+		css: {
+			expand: true,
+			src: 'build/css/*.css',
+			dest: ''
+		}
+	},
+
 	uglify: {
 		dist: {
 			options: {
@@ -65,7 +74,7 @@ grunt.initConfig({
 	watch: {
 		css: {
 			files: 'source/stylesheets/**/*.styl',
-			tasks: ['stylus'],
+			tasks: ['stylus', 'autoprefixer'],
 			options: {
 				interrupt: true
 			}
@@ -144,9 +153,10 @@ grunt.loadNpmTasks('grunt-contrib-watch');
 grunt.loadNpmTasks('grunt-contrib-jshint');
 grunt.loadNpmTasks('grunt-contrib-htmlmin');
 grunt.loadNpmTasks('grunt-contrib-stylus');
+grunt.loadNpmTasks('grunt-autoprefixer');
 grunt.loadTasks('tasks');
 
-grunt.registerTask('build', ['clean', 'jshint', 'copy', 'render', 'stylus', 'uglify']);
+grunt.registerTask('build', ['clean', 'jshint', 'copy', 'render', 'stylus', 'autoprefixer', 'uglify']);
 grunt.registerTask('preview', ['build', 'connect', 'watch']);
 // grunt.registerTask('package', ['clean', 'jshint', 'copy', 'render', 'stylus', 'uglify']);
 
