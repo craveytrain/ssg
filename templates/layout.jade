@@ -5,8 +5,8 @@ html.no-js(lang='en', dir='ltr')
 
 	body(id=pageSlug, class=pageType)
 		block header
-		include includes/nav
 		section.main(role='main')
 			block content
-				!= __content
+				!= body
+		include includes/nav
 		include includes/footer

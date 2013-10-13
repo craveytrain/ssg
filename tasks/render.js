@@ -1,12 +1,16 @@
 module.exports = function(grunt) {
 'use strict';
 
+var path = require('path');
+var fs = require('fs');
+
 var extend = require('extend');
 var jsYAML = require('js-yaml');
-var path = require('path');
 var yamlFront = require('yaml-front-matter');
+var modelBuilder = require('../models');
+
 var siteModel = grunt.file.readYAML('site.yml');
-var baseModel = require('../models/page')(siteModel);
+var models = modelBuilder(siteModel);
 
 function determinePageType(data, page, path) {
 	// if it's specified, go with it
@@ -15,9 +19,6 @@ function determinePageType(data, page, path) {
 	// if it's in the posts directory, it's probably a post
 	if (/^\/posts\//.test(path)) return 'post';
 
-	// if it's just /, it's home dummy
-	if (/^\/$/.test(path)) return 'home';
-
 	// otherwise, it's just a page
 	return 'page';
 }
@@ -25,15 +26,17 @@ function determinePageType(data, page, path) {
 var buildModel = function(page, path) {
 	// split file contents into YAML front matter and content
 	var data = yamlFront.loadFront(grunt.file.read(page));
+	var modelFile;
 
 	if (!data.pageType) {
 		data.pageType = determinePageType(data, page, path);
 	}
 
+	modelFile = models[data.pageType] || models.page;
+
 	grunt.log.debug('page type:', data.pageType);
 
-	// return the right time of model
-	return require('../models/' + data.pageType)(baseModel, data);
+	return modelFile(data);
 };
 
 var buildPath = function(file) {
