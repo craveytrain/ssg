@@ -90,8 +90,6 @@ var buildJadeData = function() {
 	grunt.config('jade', jadeData);
 };
 
-
-
 grunt.registerTask('buildJadeData', 'Parse the markdown and render the markup from the template', buildJadeData);
 
 grunt.registerTask('render', ['buildJadeData', 'jade']);

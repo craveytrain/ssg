@@ -34,7 +34,8 @@
     "grunt-contrib-stylus": "~0.8.0",
     "yaml-front-matter": "~2.1.0",
     "supermarked": "~1.1.0",
-    "grunt-autoprefixer": "~0.3.0"
+    "grunt-autoprefixer": "~0.3.0",
+    "grunt-notify": "~0.2.13"
   },
   "devDependencies": {
     "highlight": "~0.2.3"

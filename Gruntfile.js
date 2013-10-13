@@ -82,7 +82,7 @@ grunt.initConfig({
 
 		js: {
 			files: 'source/js/**/*.js',
-			tasks: ['uglify'],
+			tasks: ['jshint:client', 'copy', 'uglify'],
 			options: {
 				interrupt: true
 			}
@@ -97,7 +97,7 @@ grunt.initConfig({
 		},
 
 		staticFiles: {
-			files: ['source/**', '!source/stylesheets/**'],
+			files: ['source/**', '!source/stylesheets/**', '!source/js/**/*.js'],
 			tasks: ['copy'],
 			options: {
 				interrupt: true
@@ -110,7 +110,8 @@ grunt.initConfig({
 			jshintrc: '.jshintrc'
 		},
 		grunt: ['Gruntfile.js', 'lib/**/*.js', 'tasks/**/*.js'],
-		site: ['source/**/*.js', 'model/**/*.js']
+		site: ['model/**/*.js'],
+		client: ['source/**/*.js']
 
 	},
 
@@ -154,6 +155,7 @@ grunt.loadNpmTasks('grunt-contrib-jshint');
 grunt.loadNpmTasks('grunt-contrib-htmlmin');
 grunt.loadNpmTasks('grunt-contrib-stylus');
 grunt.loadNpmTasks('grunt-autoprefixer');
+grunt.loadNpmTasks('grunt-notify');
 grunt.loadTasks('tasks');
 
 grunt.registerTask('build', ['clean', 'jshint', 'copy', 'render', 'stylus', 'autoprefixer', 'uglify']);
