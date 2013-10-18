@@ -110,7 +110,7 @@ grunt.initConfig({
 			jshintrc: '.jshintrc'
 		},
 		grunt: ['Gruntfile.js', 'lib/**/*.js', 'tasks/**/*.js'],
-		site: ['model/**/*.js'],
+		site: ['models/**/*.js'],
 		client: ['source/**/*.js']
 
 	},

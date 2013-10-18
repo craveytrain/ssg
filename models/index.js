@@ -7,7 +7,7 @@ var modelBuilders = {};
 
 
 // go find all the model builders
-require("fs").readdirSync(__dirname).forEach(function(file) {
+require('fs').readdirSync(__dirname).forEach(function(file) {
 	var base;
 
 	// if it's the index, exit early
