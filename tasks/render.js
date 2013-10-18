@@ -38,8 +38,14 @@ function buildPath (file) {
 
 	// if basename is not index then we need to create a directory
 	if (baseName !== 'index') {
-		pathName = path.join(pathName, baseName) + path.sep;
+		pathName = path.join(pathName, baseName);
 	}
+
+	// add a trailing slash, since it's a directory
+	pathName += path.sep;
+
+	// clean up any erroneous stuff
+	pathName = path.normalize(pathName);
 
 	grunt.log.debug('path name:', pathName);
 
