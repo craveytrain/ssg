@@ -9,10 +9,14 @@ marked.aliases = {
 
 module.exports = function(baseModel) {
 	return function(data) {
-		var content = data.__content = data.__content.trim();
+		// trim the whitespace from the content, drop it back in the model
+		var content = data.__content.trim();
 
-		data.body = marked(content);
+		var body = marked(content);
 
-		return extend({}, baseModel, data);
-	}
+		return extend({}, baseModel, data, {
+			content: content,
+			body: body
+		});
+	};
 };

@@ -5,11 +5,17 @@ var excerpt = require('../lib/excerpt');
 var extend = require('extend');
 
 
-module.exports = function(baseModel) {
-	return function(data) {
-		var pageModel = require('../models/page')(baseModel, data);
-		data.excerpt = marked(data.excerpt || excerpt(data.__content));
+module.exports = function(siteModel) {
+	// initialize the page model with the base model content
+	var pageModel = require('./page')(siteModel);
 
-		return extend({}, pageModel, data);
-	}
+	return function(data) {
+		// pass the view specific data into the page model
+		var baseModel = pageModel(data);
+
+		return extend({}, baseModel, data, {
+			// create excerpt if non exists and mark it down
+			excerpt: marked(baseModel.excerpt || excerpt(baseModel.content))
+		});
+	};
 };
