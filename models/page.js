@@ -8,7 +8,7 @@ marked.aliases = {
 };
 
 module.exports = function(baseModel) {
-	return function(data) {
+	return function(data, taxonomy) {
 		// trim the whitespace from the content, drop it back in the model
 		var content = data.__content.trim();
 

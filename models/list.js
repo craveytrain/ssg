@@ -1,9 +1,18 @@
 'use strict';
 
-var marked = require('supermarked');
-var excerpt = require('../lib/excerpt');
 var extend = require('extend');
 
+function postsByLatest (posts) {
+	var arr = [];
+
+	Object.keys(posts).forEach(function(slug) {
+		arr.push(posts[slug]['/']);
+	});
+
+	return arr.sort(function(a, b) {
+		return a.date - b.date;
+	});
+}
 
 module.exports = function(siteModel) {
 	// initialize the page model with the base model content
@@ -14,8 +23,7 @@ module.exports = function(siteModel) {
 		var baseModel = pageModel(data);
 
 		return extend({}, baseModel, data, {
-			// create excerpt if non exists and mark it down
-			excerpt: marked(baseModel.excerpt || excerpt(baseModel.content))
+			posts: postsByLatest(taxonomy.posts)
 		});
 	};
 };

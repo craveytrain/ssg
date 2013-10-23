@@ -155,7 +155,6 @@ grunt.loadNpmTasks('grunt-contrib-jshint');
 grunt.loadNpmTasks('grunt-contrib-htmlmin');
 grunt.loadNpmTasks('grunt-contrib-stylus');
 grunt.loadNpmTasks('grunt-autoprefixer');
-grunt.loadNpmTasks('grunt-notify');
 grunt.loadTasks('tasks');
 
 grunt.registerTask('build', ['clean', 'jshint', 'copy', 'render', 'stylus', 'autoprefixer', 'uglify']);

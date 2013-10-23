@@ -1,6 +1,6 @@
 ---
 title: Posts
-pageType: index
+pageType: list
 ---
 
 This is the list of posts. Hi.

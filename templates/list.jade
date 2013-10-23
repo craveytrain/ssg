@@ -3,6 +3,6 @@ extends layout
 
 block content
 	ol
-		li holas
-		li list
-		li items
+	each post in posts
+		li
+			a(href=post.pathname)= post.title

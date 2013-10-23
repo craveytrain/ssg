@@ -11,13 +11,14 @@ var modelBuilder = require('../models');
 
 var siteModel = grunt.file.readYAML('site.yml');
 var models = modelBuilder(siteModel);
+var taxonomy = {};
 
-function determinePageType (data, path) {
+function determinePageType (data) {
 	// if it's specified, go with it
 	if (data.pageType) return data.pageType;
 
 	// if it's in the posts directory, it's probably a post
-	if (/^\/posts\//.test(path)) return 'post';
+	if (data.pageTaxonomy[0] === 'posts') return 'post';
 
 	// otherwise, it's just a page
 	return 'page';
@@ -27,29 +28,26 @@ function buildModel (data) {
 	var modelFile = models[data.pageType] || models.page;
 
 	// build up the model and return it
-	return modelFile(data);
+	return modelFile(data, taxonomy);
 }
 
-function buildPath (file) {
+function buildPageTaxonomy (file) {
 	var baseName = path.basename(file, path.extname(file));
 
-	// trim first directory and filename
-	var pathName = path.dirname(file.substring(file.indexOf(path.sep)));
+	// trim filename
+	var pageTaxonomy = path.dirname(file).split(path.sep);
+
+	// trim first directory
+	pageTaxonomy.shift();
 
 	// if basename is not index then we need to create a directory
 	if (baseName !== 'index') {
-		pathName = path.join(pathName, baseName);
+		pageTaxonomy.push(baseName);
 	}
 
-	// add a trailing slash, since it's a directory
-	pathName += path.sep;
+	grunt.log.debug('page taxonomy:', pageTaxonomy);
 
-	// clean up any erroneous stuff
-	pathName = path.normalize(pathName);
-
-	grunt.log.debug('path name:', pathName);
-
-	return pathName;
+	return pageTaxonomy;
 }
 
 function sortViews () {
@@ -63,32 +61,46 @@ function sortViews () {
 		grunt.file.expand(glob).forEach(function(file) {
 			grunt.log.debug('file:', file);
 
-			// define path
-			var path = buildPath(file);
-
 			// parse the file
 			var data = yamlFront.loadFront(grunt.file.read(file));
 
+			// define the taxomony
+			var pageTaxonomy = data.pageTaxonomy = buildPageTaxonomy(file);
+
 			// find out the page type
-			var pageType = data.pageType = determinePageType(data, path);
+			var pageType = data.pageType = determinePageType(data);
 			grunt.log.debug('page type:', pageType);
 
-			var view = {
-				pathName: path,
-				data: data
-			};
-
-			// rudimentary sorting
+			// rudimentary priority queue
 			if (pageType === 'post') {
-				viewQueue.unshift(view);
+				viewQueue.unshift(data);
 			} else {
-				viewQueue.push(view);
+				viewQueue.push(data);
 			}
 		});
 	});
 
-	// process the queue
+	// process the views
 	processQueue(viewQueue);
+}
+
+function populateTaxonomy (model) {
+	// set the marker
+	var currentView = taxonomy;
+
+	model.pageTaxonomy.forEach(function(dir, i) {
+		// if the directory doesn't exist
+		if (!currentView.hasOwnProperty(dir)) {
+			// if it's the last item in the array, set it to the value, otherwise empty object
+			currentView[dir] = {};
+		}
+
+		// recursively set the marker
+		currentView = currentView[dir];
+	});
+
+	// set the data to a key that will get scrubbed out in path.normalize()
+	currentView['/'] = model;
 }
 
 function processQueue (queue) {
@@ -98,9 +110,13 @@ function processQueue (queue) {
 
 	var jadeData = grunt.config('jade');
 
-	queue.forEach(function(view) {
-		var pathName = view.pathName;
-		var model = buildModel(view.data);
+	queue.forEach(function(data) {
+		var model = buildModel(data, taxonomy);
+		// build out the path from the pageTaxonomy
+		// join only takes comma separated args, so we apply it to send an array
+		var pathName = model.pathname = path.normalize('/' + path.join.apply(this, model.pageTaxonomy) + '/');
+
+		populateTaxonomy(model);
 
 		// Set model data
 		jadeData[pathName] = {
