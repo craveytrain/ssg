@@ -28,7 +28,7 @@ function buildModel (data) {
 	var modelFile = models[data.pageType] || models.page;
 
 	// build up the model and return it
-	return modelFile(data, taxonomy);
+	return modelFile.buildModel(siteModel, data, taxonomy);
 }
 
 function buildPageTaxonomy (file) {

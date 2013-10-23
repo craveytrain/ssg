@@ -7,8 +7,8 @@ marked.aliases = {
 	html: 'xml'
 };
 
-module.exports = function(baseModel) {
-	return function(data, taxonomy) {
+module.exports = {
+	buildModel: function (baseModel, data, taxonomy) {
 		// trim the whitespace from the content, drop it back in the model
 		var content = data.__content.trim();
 
@@ -18,5 +18,5 @@ module.exports = function(baseModel) {
 			content: content,
 			body: body
 		});
-	};
+	}
 };

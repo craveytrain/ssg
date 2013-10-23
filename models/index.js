@@ -20,12 +20,12 @@ require('fs').readdirSync(__dirname).forEach(function(file) {
 	modelBuilders[base] = require('./' + base);
 });
 
-module.exports = function(siteModel) {
+module.exports = function() {
 	var models = {};
 
 	// loop through the model builders and attach them to the models object
 	Object.keys(modelBuilders).forEach(function(pageType) {
-		models[pageType] = modelBuilders[pageType](siteModel);
+		models[pageType] = modelBuilders[pageType];
 	});
 
 	return models;
