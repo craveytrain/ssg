@@ -16,7 +16,8 @@ module.exports = {
 
 		return extend({}, baseModel, data, {
 			content: content,
-			body: body
+			body: body,
+			pageSlug: data.pageTaxonomy[data.pageTaxonomy.length - 1]
 		});
 	}
 };
