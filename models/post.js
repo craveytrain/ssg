@@ -19,6 +19,20 @@ var getPosts = (function(posts) {
 	};
 }([]));
 
+function postsByLatest (taxonomyPosts) {
+	var posts = getPosts(taxonomyPosts);
+
+	return posts.sort(function(a, b) {
+		return a.date - b.date;
+	});
+}
+
+function latestPost (taxonomyPosts) {
+	var posts = postsByLatest(taxonomyPosts);
+
+	return posts[0];
+}
+
 module.exports = {
 	buildModel: function (siteModel, data, taxonomy) {
 		// pass the site model and the view specific data into the page model
@@ -26,14 +40,9 @@ module.exports = {
 
 		return extend({}, baseModel, data, {
 			// create excerpt if non exists and mark it down
-			excerpt: marked(baseModel.excerpt || excerpt(baseModel.content))
+			excerpt: baseModel.excerpt || excerpt(baseModel.content)
 		});
 	},
-	postsByLatest: function (taxonomyPosts) {
-		var posts = getPosts(taxonomyPosts);
-
-		return posts.sort(function(a, b) {
-			return a.date - b.date;
-		});
-	}
+	postsByLatest: postsByLatest,
+	latestPost: latestPost
 };
