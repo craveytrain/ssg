@@ -23,7 +23,7 @@ function postsByLatest (taxonomyPosts) {
 	var posts = getPosts(taxonomyPosts);
 
 	return posts.sort(function(a, b) {
-		return a.date - b.date;
+		return b.date - a.date;
 	});
 }
 
