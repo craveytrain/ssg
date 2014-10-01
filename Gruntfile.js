@@ -10,7 +10,7 @@ module.exports = function ( grunt ) {
 				files: [ {
 					cwd: 'source/',
 					expand: true,
-					src: [ '**', '!stylesheets/**' ],
+					src: [ '**' ],
 					dest: 'build/'
 				} ]
 			}
@@ -28,13 +28,13 @@ module.exports = function ( grunt ) {
 			}
 		},
 
-		stylus: {
-			compile: {
-				options: {
-					linenos: true
-				},
+		sass: {
+			options: {
+				sourceMap: true
+			},
+			dist: {
 				files: {
-					'build/css/default.css': 'source/stylesheets/default.styl'
+					'build/css/screen.css': 'sass/screen.scss'
 				}
 			}
 		},
@@ -69,8 +69,8 @@ module.exports = function ( grunt ) {
 
 		watch: {
 			css: {
-				files: 'source/stylesheets/**/*.styl',
-				tasks: [ 'stylus', 'autoprefixer' ],
+				files: 'sass/**/*.scss',
+				tasks: [ 'sass', 'autoprefixer' ],
 				options: {
 					interrupt: true
 				}
@@ -93,7 +93,7 @@ module.exports = function ( grunt ) {
 			},
 
 			staticFiles: {
-				files: [ 'source/**', '!source/stylesheets/**', '!source/js/**/*.js' ],
+				files: [ 'source/**', '!source/js/**/*.js' ],
 				tasks: [ 'copy' ],
 				options: {
 					interrupt: true
@@ -141,21 +141,12 @@ module.exports = function ( grunt ) {
 		clean: [ 'build' ]
 	} );
 
-	grunt.loadNpmTasks( 'grunt-contrib-jade' );
-	grunt.loadNpmTasks( 'grunt-contrib-clean' );
-	grunt.loadNpmTasks( 'grunt-contrib-connect' );
-	grunt.loadNpmTasks( 'grunt-contrib-copy' );
-	grunt.loadNpmTasks( 'grunt-contrib-uglify' );
-	grunt.loadNpmTasks( 'grunt-contrib-watch' );
-	grunt.loadNpmTasks( 'grunt-contrib-jshint' );
-	grunt.loadNpmTasks( 'grunt-contrib-htmlmin' );
-	grunt.loadNpmTasks( 'grunt-contrib-stylus' );
-	grunt.loadNpmTasks( 'grunt-autoprefixer' );
+	// Auto load all grunt tasks
+	require( 'load-grunt-tasks' )( grunt );
 	grunt.loadTasks( 'tasks' );
 
-	grunt.registerTask( 'build', [ 'clean', 'jshint', 'copy', 'render', 'stylus', 'autoprefixer', 'uglify' ] );
+	grunt.registerTask( 'build', [ 'clean', 'jshint', 'copy', 'render', 'sass', 'autoprefixer', 'uglify' ] );
 	grunt.registerTask( 'preview', [ 'build', 'connect', 'watch' ] );
-	// grunt.registerTask('package', ['clean', 'jshint', 'copy', 'render', 'stylus', 'uglify']);
 
 	// Default task(s).
 	grunt.registerTask( 'default', [ 'build' ] );

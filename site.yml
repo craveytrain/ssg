@@ -3,7 +3,7 @@ subtitle: I'm a little geek bot, short and stout…
 author: Mike Cravey
 description: The blog of Mike Cravey (@craveytrain).
 rss: /atom.xml
-stylesheet: /css/default.css
+stylesheet: /css/screen.css
 script: /js/main.min.js
 domain: craveytrain.com
 keywords:

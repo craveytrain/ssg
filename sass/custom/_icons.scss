@@ -1,0 +1,40 @@
+@font-face {
+	font-family: 'icomoon';
+	src:url('/fonts/icomoon.eot');
+	src:url('/fonts/icomoon.eot?#iefix') format('embedded-opentype'),
+		url('/fonts/icomoon.svg#icomoon') format('svg'),
+		url('/fonts/icomoon.woff') format('woff'),
+		url('/fonts/icomoon.ttf') format('truetype');
+	font-weight: normal;
+	font-style: normal;
+}
+
+/* Use the following CSS code if you want to have a class per icon */
+.icon:before {
+// [class^="icon-"]:before, [class*=" icon-"]:before {
+	font-family: 'icomoon';
+	font-style: normal;
+	speak: none;
+	font-weight: normal;
+	-webkit-font-smoothing: antialiased;
+}
+.icon-gplus:before {
+	@extend .icon:before;
+	content: "\e000";
+}
+.icon-twitter:before {
+	@extend .icon:before;
+	content: "\e001";
+}
+.icon-flickr:before {
+	@extend .icon:before;
+	content: "\e002";
+}
+.icon-github:before {
+	@extend .icon:before;
+	content: "\e003";
+}
+.icon-linkedin:before {
+	@extend .icon:before;
+	content: "\e004";
+}
