@@ -34,7 +34,7 @@
     "grunt-contrib-watch": "~0.6.1",
     "grunt-notify": "~0.3.1",
     "js-yaml": "~3.2.2",
-    "supermarked": "~1.1.0",
+    "marked": "^0.3.2",
     "yaml-front-matter": "~3.0.1"
   },
   "devDependencies": {

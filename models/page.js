@@ -1,6 +1,6 @@
 'use strict';
 
-var marked = require( 'supermarked' );
+var marked = require( 'marked' );
 var extend = require( 'extend' );
 
 marked.aliases = {
