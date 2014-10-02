@@ -12,6 +12,8 @@ var connect = require( 'gulp-connect' );
 var del = require( 'del' );
 var sourcemaps = require( 'gulp-sourcemaps' );
 var uglify = require( 'gulp-uglify' );
+var excerpt = require( './tasks/excerpt' );
+var markdown = require( 'gulp-markdown-to-json' );
 
 // Local Dev
 var browserSync = require( 'browser-sync' );
@@ -56,7 +58,12 @@ gulp.task( 'copy', function () {
 		} ) );
 } );
 
-
+gulp.task( 'render', function () {
+	return gulp.src( path.join( 'content', '**', '*.md' ) )
+		.pipe( markdown() )
+		.pipe( excerpt() )
+		.pipe( gulp.dest( 'json' ) );
+} );
 
 gulp.task( 'preview', [ 'css', 'js', 'copy' ], function () {
 	browserSync( {
