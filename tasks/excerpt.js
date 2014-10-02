@@ -45,7 +45,6 @@ module.exports = function ( options ) {
 	// Take specified field or set it to 'content'
 	options.field = options.field || 'body';
 
-
 	return through.obj( function ( file, enc, cb ) {
 		if ( file.isNull() ) {
 			this.push( file );
