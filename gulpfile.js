@@ -9,11 +9,14 @@ var connect = require( 'gulp-connect' );
 var del = require( 'del' );
 var sourcemaps = require( 'gulp-sourcemaps' );
 var uglify = require( 'gulp-uglify' );
-var excerpt = require( './tasks/excerpt' );
 var markdown = require( 'gulp-markdown-to-json' );
 var jshint = require( 'gulp-jshint' );
 var stylish = require( 'jshint-stylish' );
 var jscs = require( 'gulp-jscs' );
+
+// Home grown modules
+var excerpt = require( './tasks/excerpt' );
+var sluggify = require( './tasks/sluggify' );
 
 // Local Dev
 var browserSync = require( 'browser-sync' );
@@ -73,6 +76,7 @@ gulp.task( 'render', function () {
 	return gulp.src( 'content/**/*.md' )
 		.pipe( markdown() )
 		.pipe( excerpt() )
+		.pipe( sluggify() )
 		.pipe( gulp.dest( 'json' ) );
 } );
 
