@@ -17,15 +17,17 @@ var jscs = require( 'gulp-jscs' );
 // Home grown modules
 var excerpt = require( './tasks/excerpt' );
 var sluggify = require( './tasks/sluggify' );
+var pathify = require( './tasks/pathify' );
 var jadify = require( './tasks/jadify' );
 
 // Local Dev
 var browserSync = require( 'browser-sync' );
 var reload = browserSync.reload;
 
-// Config based stuff
+// Dir based stuff
 var buildDir = 'build';
 var sourceGlob = 'source/**';
+var mdGlob = 'content/**/*.md';
 
 gulp.task( 'clean', function ( cb ) {
 	del( [ buildDir ], cb );
@@ -74,15 +76,16 @@ gulp.task( 'copy', function () {
 } );
 
 gulp.task( 'render', function () {
-	return gulp.src( 'content/**/*.md' )
+	return gulp.src( mdGlob )
 		.pipe( markdown() )
 		.pipe( excerpt() )
 		.pipe( sluggify() )
+		.pipe( pathify() )
 		.pipe( jadify() )
-		.pipe( gulp.dest( 'json' ) );
+		.pipe( gulp.dest( 'build' ) );
 } );
 
-gulp.task( 'preview', [ 'css', 'js', 'copy' ], function () {
+gulp.task( 'preview', [ 'build' ], function () {
 	browserSync( {
 		server: {
 			baseDir: buildDir
@@ -92,4 +95,7 @@ gulp.task( 'preview', [ 'css', 'js', 'copy' ], function () {
 	gulp.watch( 'sass/**/*.scss', [ 'css' ] );
 	gulp.watch( 'js/**/*.js', [ 'js' ] );
 	gulp.watch( sourceGlob, [ 'copy' ] );
+	gulp.watch( mdGlob, [ 'render' ] );
 } );
+
+gulp.task( 'build', [ 'js', 'css', 'copy', 'render' ] );
