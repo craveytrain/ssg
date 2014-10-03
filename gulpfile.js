@@ -17,6 +17,7 @@ var jscs = require( 'gulp-jscs' );
 // Home grown modules
 var excerpt = require( './tasks/excerpt' );
 var sluggify = require( './tasks/sluggify' );
+var jadify = require( './tasks/jadify' );
 
 // Local Dev
 var browserSync = require( 'browser-sync' );
@@ -77,6 +78,7 @@ gulp.task( 'render', function () {
 		.pipe( markdown() )
 		.pipe( excerpt() )
 		.pipe( sluggify() )
+		.pipe( jadify() )
 		.pipe( gulp.dest( 'json' ) );
 } );
 
