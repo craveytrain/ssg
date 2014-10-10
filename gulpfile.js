@@ -25,7 +25,7 @@ var browserSync = require( 'browser-sync' );
 var reload = browserSync.reload;
 
 // Dir based stuff
-var buildDir = 'build';
+var buildDir = 'public';
 var sourceGlob = 'source/**';
 var mdGlob = 'content/**/*.md';
 
@@ -82,7 +82,7 @@ gulp.task( 'render', function () {
 		.pipe( sluggify() )
 		.pipe( pathify() )
 		.pipe( jadify() )
-		.pipe( gulp.dest( 'build' ) );
+		.pipe( gulp.dest( buildDir ) );
 } );
 
 gulp.task( 'preview', [ 'build' ], function () {
