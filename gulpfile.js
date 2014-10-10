@@ -19,6 +19,7 @@ var excerpt = require( './tasks/excerpt' );
 var sluggify = require( './tasks/sluggify' );
 var pathify = require( './tasks/pathify' );
 var jadify = require( './tasks/jadify' );
+var gistify = require( './tasks/gistify' );
 
 // Local Dev
 var browserSync = require( 'browser-sync' );
@@ -37,7 +38,7 @@ gulp.task( 'checkJs', function () {
 	return gulp.src( [
 			'**/*.js',
 			'!node_modules/**/*.js',
-			'!build/**/*.js'
+			'!' + buildDir + '/**/*.js'
 		] )
 		.pipe( jshint() )
 		.pipe( jshint.reporter( stylish ) )
@@ -78,6 +79,7 @@ gulp.task( 'copy', function () {
 gulp.task( 'render', function () {
 	return gulp.src( mdGlob )
 		.pipe( markdown() )
+		// .pipe( gistify() )
 		.pipe( excerpt() )
 		.pipe( sluggify() )
 		.pipe( pathify() )
