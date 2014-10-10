@@ -79,7 +79,7 @@ gulp.task( 'copy', function () {
 gulp.task( 'render', function () {
 	return gulp.src( mdGlob )
 		.pipe( markdown() )
-		// .pipe( gistify() )
+		.pipe( gistify() )
 		.pipe( excerpt() )
 		.pipe( sluggify() )
 		.pipe( pathify() )
